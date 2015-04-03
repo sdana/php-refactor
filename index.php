@@ -25,7 +25,7 @@ $rental3 = new Rental(
     ), 5
 );
 
-$customer = new Customer('Martin Fowler');
+$customer = new Customer('Joe Schmoe');
 
 $customer->addRental($rental1);
 $customer->addRental($rental2);
