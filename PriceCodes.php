@@ -14,7 +14,11 @@ class PriceCodes
     public function __construct()
     {
         require_once('config.php');
-        $this->priceCodes = $priceCode;
+        // $this->priceCodes = $priceCode;
+        foreach(config.$priceCode as $priceCode)
+        {
+            $this->priceCodes = $priceCode;
+        }
     }
 
     /**
@@ -24,7 +28,7 @@ class PriceCodes
     {
         return $this->priceCodes[$name];
     }
-    
+
     /**
      * @return bool
      */
@@ -36,8 +40,8 @@ class PriceCodes
         } else {
             return false;
         }
-    }    
-    
+    }
+
     /**
      * @return bool
      */
@@ -50,6 +54,4 @@ class PriceCodes
             return false;
         }
     }
-    
-    
 }

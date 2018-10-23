@@ -37,10 +37,18 @@ class Customer
         $this->rentals[] = $rental;
     }
 
+    // public function frequentRenterPoints(string $moviePriceCode, int $daysRented )
+    // {
+    //     if ($rental->movie()->priceCode() === $moviePriceCode && $rental->daysRented() > $daysRented)
+    //     {
+    //             $frequentRenterPoints++;
+    //     }
+    // }
+
     /**
      * @return string
      */
-    public function statement(bool $returnHTML=false)
+    public function statement(bool $returnHTML, string $frequentRenterCode, int $daysRentedForPoints, string $movieCode2Day, string $movieCode3Day)
     {
         $totalAmount = 0;
         $frequentRenterPoints = 0;
@@ -51,17 +59,20 @@ class Customer
         foreach ($this->rentals as $rental) {
             $thisAmount = 0;
 
-            switch($rental->movie()->priceCode()) {
-                case Movie::REGULAR:
+            switch($rental->movie()->movieCode()) {
+                // case Movie::REGULAR:
+                case $movieCode2Day:
                     $thisAmount += 2;
                     if ($rental->daysRented() > 2) {
                         $thisAmount += ($rental->daysRented() - 2) * 1.5;
                     }
                     break;
-                case Movie::NEW_RELEASE:
+                // case Movie::NEW_RELEASE:
+                case "NEW_RELEASE":
                     $thisAmount += $rental->daysRented() * 3;
                     break;
-                case Movie::CHILDRENS:
+                // case Movie::CHILDRENS:
+                case $movieCode3Day:
                     $thisAmount += 1.5;
                     if ($rental->daysRented() > 3) {
                         $thisAmount += ($rental->daysRented() - 3) * 1.5;
@@ -72,7 +83,10 @@ class Customer
             $totalAmount += $thisAmount;
 
             $frequentRenterPoints++;
-            if ($rental->movie()->priceCode() === Movie::NEW_RELEASE && $rental->daysRented() > 1) {
+            // if ($rental->movie()->priceCode() === Movie::NEW_RELEASE && $rental->daysRented() > 1) {
+            //     $frequentRenterPoints++;
+            // }
+            if ($rental->movie()->movieCode() === $frequentRenterCode && $rental->daysRented() >= $daysRentedForPoints) {
                 $frequentRenterPoints++;
             }
 
@@ -96,9 +110,9 @@ class Customer
         }
     }
 
-    public function htmlStatement()
+    public function htmlStatement(bool $htmlStatement = true, string $frequentRenterCode, int $daysRentedForPoints, string $movieCode2Day, string $movieCode3Day)
     {
-        $returnHtmlStatement = $this->statement(true);
+        $returnHtmlStatement = $this->statement($htmlStatement, $frequentRenterCode, $daysRentedForPoints, $movieCode2Day, $movieCode3Day);
         return $returnHtmlStatement;
     }
 }
