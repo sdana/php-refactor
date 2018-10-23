@@ -40,12 +40,13 @@ class Customer
     /**
      * @return string
      */
-    public function statement()
+    public function statement(bool $returnHTML=false)
     {
         $totalAmount = 0;
         $frequentRenterPoints = 0;
 
         $result = 'Rental Record for ' . $this->name() . PHP_EOL;
+        $htmlResult = '<h1>Rental Record for <em>' . $this->name() . '</em></h1>' . PHP_EOL . '<ul>' . PHP_EOL;
 
         foreach ($this->rentals as $rental) {
             $thisAmount = 0;
@@ -76,11 +77,28 @@ class Customer
             }
 
             $result .= "\t" . str_pad($rental->movie()->name(), 30, ' ', STR_PAD_RIGHT) . "\t" . $thisAmount . PHP_EOL;
+            $htmlResult .= '<li>' . str_pad($rental->movie()->name(), 30, ' ', STR_PAD_RIGHT) . $thisAmount . '</li>' . PHP_EOL;
         }
 
         $result .= 'Amount owed is ' . $totalAmount . PHP_EOL;
-        $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points' . PHP_EOL;
+        $htmlResult .= '</ul>' . PHP_EOL . '<p>Amount owed is ' . $totalAmount . '</p>' . PHP_EOL;
 
-        return $result;
+        $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points' . PHP_EOL;
+        $htmlResult .= '<p>You earned ' . $frequentRenterPoints . ' frequent renter points</p>' . PHP_EOL;
+
+        if ($returnHTML != true)
+        {
+            return $result;
+        }
+        else
+        {
+            return $htmlResult;
+        }
+    }
+
+    public function htmlStatement()
+    {
+        $returnHtmlStatement = $this->statement(true);
+        return $returnHtmlStatement;
     }
 }

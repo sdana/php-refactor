@@ -1,8 +1,6 @@
 ## Introduction
 
-This example comes from the book Refactoring by Martin Fowler.
-
-There are solutions to this problem readily available on the Internet, so please adhere to the honor system: don't cheat!
+This example comes from the book Refactoring by Martin Fowler. There are solutions to this problem readily available on the Internet, so please adhere to the honor system: don't cheat! You are, of course, free to use Google to find answers to generic questions, but don't go searching for "martin fowler refactoring movie problem" or anything like that.
 
 ## Requirements
 
@@ -52,7 +50,7 @@ You earned 4 frequent renter points
     <li>Office Space - 3.5</li>
     <li>The Big Lebowski - 15</li>
 <ul>
-<p>Amount owed is <em>21.5</em>
+<p>Amount owed is <em>21.5</em></p>
 <p>You earned <em>4</em> frequent renter points</p>
 ```
 
