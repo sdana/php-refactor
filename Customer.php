@@ -77,14 +77,14 @@ class Customer
             }
 
             $result .= "\t" . str_pad($rental->movie()->name(), 30, ' ', STR_PAD_RIGHT) . "\t" . $thisAmount . PHP_EOL;
-            $htmlResult .= '<li>' . str_pad($rental->movie()->name(), 30, ' ', STR_PAD_RIGHT) . $thisAmount . '</li>' . PHP_EOL;
+            $htmlResult .= '<li> ' . $rental->movie()->name() .' - ' . $thisAmount . '</li>' . PHP_EOL;
         }
 
         $result .= 'Amount owed is ' . $totalAmount . PHP_EOL;
-        $htmlResult .= '</ul>' . PHP_EOL . '<p>Amount owed is ' . $totalAmount . '</p>' . PHP_EOL;
+        $htmlResult .= '</ul>' . PHP_EOL . '<p>Amount owed is <em>' . $totalAmount . '</em></p>' . PHP_EOL;
 
         $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points' . PHP_EOL;
-        $htmlResult .= '<p>You earned ' . $frequentRenterPoints . ' frequent renter points</p>' . PHP_EOL;
+        $htmlResult .= '<p>You earned <em>' . $frequentRenterPoints . '</em> frequent renter points</p>' . PHP_EOL;
 
         if ($returnHTML != true)
         {
