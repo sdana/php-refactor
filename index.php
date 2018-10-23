@@ -3,7 +3,6 @@
 require_once('Movie.php');
 require_once('Rental.php');
 require_once('Customer.php');
-require_once('PriceCodes.php');
 
 $rental1 = new Rental(
     new Movie(
@@ -42,7 +41,7 @@ $customer->addRental($rental2);
 $customer->addRental($rental3);
 $customer->addRental($rental4);
 
-echo $customer->statement(false, "NEW_RELEASE", 5, "REGULAR", "CHILDRENS");
+echo $customer->statement("NEW_RELEASE", 5, "REGULAR", "CHILDRENS");
 
-echo $customer->htmlStatement(true, "NEW_RELEASE", 5, "REGULAR", "CHILDRENS");
+echo $customer->htmlStatement("NEW_RELEASE", 5, "REGULAR", "CHILDRENS");
 // echo $customer->statement(true);

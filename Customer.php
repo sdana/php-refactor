@@ -48,7 +48,7 @@ class Customer
     /**
      * @return string
      */
-    public function statement(bool $returnHTML, string $frequentRenterCode, int $daysRentedForPoints, string $movieCode2Day, string $movieCode3Day)
+    public function statement(string $frequentRenterCode, int $daysRentedForPoints, string $movieCode2Day, string $movieCode3Day, bool $returnHTML = false)
     {
         $totalAmount = 0;
         $frequentRenterPoints = 0;
@@ -110,9 +110,9 @@ class Customer
         }
     }
 
-    public function htmlStatement(bool $htmlStatement = true, string $frequentRenterCode, int $daysRentedForPoints, string $movieCode2Day, string $movieCode3Day)
+    public function htmlStatement(string $frequentRenterCode, int $daysRentedForPoints, string $movieCode2Day, string $movieCode3Day, bool $htmlStatement = true)
     {
-        $returnHtmlStatement = $this->statement($htmlStatement, $frequentRenterCode, $daysRentedForPoints, $movieCode2Day, $movieCode3Day);
+        $returnHtmlStatement = $this->statement($frequentRenterCode, $daysRentedForPoints, $movieCode2Day, $movieCode3Day, $htmlStatement);
         return $returnHtmlStatement;
     }
 }
